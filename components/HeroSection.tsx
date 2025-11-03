@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 
 export default function HeroSection() {
   return (
@@ -58,13 +57,11 @@ export default function HeroSection() {
                   animate={{ scale: 1, rotate: 0 }}
                   transition={{ duration: 1, delay: 0.5 }}
                 >
-                  <Image 
-                    src="/images/characters/botbee.png.png" 
+                  <img 
+                    src="/images/characters/botbee.png" 
                     alt="Botbee - Abeja Educativa" 
-                    width={128}
-                    height={128}
                     className="w-full h-full object-contain"
-                    unoptimized
+                    style={{ width: '100%', height: '100%' }}
                   />
                 </motion.div>
                 <h3 className="text-2xl font-bold">IA Educativa</h3>

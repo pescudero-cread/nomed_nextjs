@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 import Link from 'next/link'
 
 export default function BotbeePage() {
@@ -57,14 +56,11 @@ export default function BotbeePage() {
                     animate={{ scale: 1, rotate: 0 }}
                     transition={{ duration: 1, delay: 0.5 }}
                   >
-                    <Image 
-                      src="/images/characters/botbee.png.png" 
+                    <img 
+                      src="/images/characters/botbee.png" 
                       alt="Botbee - Abeja Educativa" 
-                      width={192}
-                      height={192}
                       className="w-full h-full object-contain"
-                      unoptimized
-                      priority
+                      style={{ width: '100%', height: '100%' }}
                     />
                   </motion.div>
                   <h3 className="text-2xl font-bold">¡Hola! Soy Botbee</h3>

@@ -2,14 +2,13 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import Image from 'next/image'
 
 const services = [
   {
     id: 'botbee',
     name: 'Botbee',
     description: 'Personajes interactivos para el aprendizaje dinámico',
-    image: '/images/characters/botbee.png.png',
+    image: '/images/characters/botbee.png',
     color: 'botbee-honey',
     hoverColor: 'botbee-honey-dark',
     borderColor: 'border-botbee-honey',
@@ -31,7 +30,7 @@ const services = [
     id: 'quizzal',
     name: 'Quizzal',
     description: 'Plataforma de evaluaciones personalizadas',
-    image: '/images/characters/quizzal.png.png',
+    image: '/images/characters/quizzal.png',
     color: 'quizzal-green',
     hoverColor: 'quizzal-forest',
     borderColor: 'border-quizzal-green',
@@ -80,13 +79,11 @@ export default function ServicesSection() {
               whileHover={{ y: -5 }}
             >
               <div className="w-20 h-20 mx-auto mb-4 character-hover">
-                <Image 
+                <img 
                   src={service.image} 
                   alt={`${service.name} - Personaje Educativo`} 
-                  width={80}
-                  height={80}
                   className="w-full h-full object-contain"
-                  unoptimized
+                  style={{ width: '100%', height: '100%' }}
                 />
               </div>
               <h3 className={`text-xl font-bold text-${service.color} mb-3`}>{service.name}</h3>
