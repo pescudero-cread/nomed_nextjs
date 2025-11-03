@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monkit | Nomed</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Animación flotante */
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    /* Animación de herramienta */
+    .animate-tool {
+      animation: tool-move 1.5s infinite alternate;
+      transform-origin: right center;
+    }
+    @keyframes tool-move {
+      0% { transform: rotate(-10deg); }
+      100% { transform: rotate(20deg); }
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-orange-50 to-white min-h-screen">
+  <!-- Navbar -->
+  <nav class="bg-blue-900 text-white px-8 py-4 flex justify-between items-center shadow">
+    <div class="font-bold text-2xl tracking-wide">Nomed</div>
+    <div class="space-x-8 hidden md:flex">
+      <a href="/" class="hover:underline">Inicio</a>
+      <a href="/#servicios" class="hover:underline">Servicios</a>
+      <a href="/#nosotros" class="hover:underline">Sobre Nosotros</a>
+      <a href="/#contacto" class="hover:underline">Contacto</a>
+    </div>
+    <div class="text-sm font-semibold">Descubre nuestras soluciones</div>
+  </nav>
+
+  <!-- Breadcrumb -->
+  <div class="bg-white shadow-sm px-8 py-2 text-gray-600 text-sm">
+    <span class="font-bold text-blue-900">NOMED</span> / Monkit
+  </div>
+
+  <!-- Main Content -->
+  <main class="flex flex-col items-center justify-center min-h-[70vh]">
+    <!-- Personaje Monkit SVG animado -->
+    <div class="animate-float mb-8">
+      <svg width="220" height="260" viewBox="0 0 220 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Cuerpo -->
+        <ellipse cx="110" cy="150" rx="70" ry="90" fill="#A54817" />
+        <!-- Cabeza -->
+        <circle cx="110" cy="70" r="45" fill="#D97A1A" />
+        <!-- Ojos -->
+        <circle cx="95" cy="65" r="8" fill="#fff"/>
+        <circle cx="125" cy="65" r="8" fill="#fff"/>
+        <circle cx="95" cy="65" r="3" fill="#000"/>
+        <circle cx="125" cy="65" r="3" fill="#000"/>
+        <!-- Boca -->
+        <ellipse cx="110" cy="85" rx="12" ry="7" fill="#000"/>
+        <!-- Brazos -->
+        <rect x="30" y="120" width="30" height="70" rx="15" fill="#F89C1C"/>
+        <rect x="160" y="120" width="30" height="70" rx="15" fill="#F89C1C"/>
+        <!-- Cinturón -->
+        <rect x="75" y="200" width="70" height="22" rx="8" fill="#B5724D"/>
+        <!-- Herramienta (llave inglesa) animada -->
+        <g class="animate-tool">
+          <rect x="170" y="170" width="40" height="10" rx="5" fill="#B0B7BD"/>
+          <rect x="205" y="167" width="8" height="16" rx="4" fill="#8A929A"/>
+        </g>
+        <!-- Botones del cinturón -->
+        <circle cx="95" cy="211" r="4" fill="#D0A127"/>
+        <circle cx="110" cy="211" r="4" fill="#D0A127"/>
+        <circle cx="125" cy="211" r="4" fill="#D0A127"/>
+      </svg>
+    </div>
+
+    <!-- Botón destacado -->
+    <button class="px-8 py-3 bg-orange-600 text-white rounded-xl shadow-lg hover:bg-orange-700 transition font-bold text-lg mb-8">
+      Comenzar Ahora
+    </button>
+
+    <!-- Demo interactivo -->
+    <section class="w-full max-w-xl bg-white rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-xl font-bold text-orange-700 mb-4">Demo Interactiva: Creador de Contenido</h2>
+      <form class="space-y-4">
+        <div>
+          <label class="block font-semibold mb-1">Tipo de material:</label>
+          <select class="w-full border rounded px-3 py-2">
+            <option>Guía</option>
+            <option>Ejercicio</option>
+            <option>Juego</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-semibold mb-1">Tema:</label>
+          <input type="text" class="w-full border rounded px-3 py-2" placeholder="Ej: Fracciones, Animales, etc.">
+        </div>
+        <button type="submit" class="w-full bg-orange-600 text-white py-2 rounded-lg font-bold hover:bg-orange-700 transition">
+          Generar Contenido
+        </button>
+      </form>
+      <!-- Resultado demo -->
+      <div id="demo-result" class="mt-6 text-gray-700"></div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white py-6 mt-12 text-center">
+    © 2025 Nomed. Todos los derechos reservados.
+  </footer>
+
+  <!-- Demo JS -->
+  <script>
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const tipo = this.querySelector('select').value;
+      const tema = this.querySelector('input').value;
+      document.getElementById('demo-result').innerHTML =
+        `<div class="p-4 bg-orange-50 rounded-lg shadow mt-2">
+          <strong>¡Contenido generado!</strong><br>
+          Tipo: <span class="font-semibold">${tipo}</span><br>
+          Tema: <span class="font-semibold">${tema || 'Sin tema'}</span>
+        </div>`;
+    });
+  </script>
+</body>
+</html>
