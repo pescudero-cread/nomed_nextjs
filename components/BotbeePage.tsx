@@ -58,11 +58,13 @@ export default function BotbeePage() {
                     transition={{ duration: 1, delay: 0.5 }}
                   >
                     <Image 
-                      src="/images/characters/botbee.svg" 
+                      src="/images/characters/botbee.png.png" 
                       alt="Botbee - Abeja Educativa" 
                       width={192}
                       height={192}
-                      className="w-full h-full"
+                      className="w-full h-full object-contain"
+                      unoptimized
+                      priority
                     />
                   </motion.div>
                   <h3 className="text-2xl font-bold">¡Hola! Soy Botbee</h3>

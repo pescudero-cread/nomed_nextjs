@@ -58,11 +58,13 @@ export default function QuizzalPage() {
                     transition={{ duration: 1, delay: 0.5 }}
                   >
                     <Image 
-                      src="/images/characters/quizzal.svg" 
+                      src="/images/characters/quizzal.png.png" 
                       alt="Quizzal - Búho Evaluador" 
                       width={192}
                       height={192}
-                      className="w-full h-full"
+                      className="w-full h-full object-contain"
+                      unoptimized
+                      priority
                     />
                   </motion.div>
                   <h3 className="text-2xl font-bold">¡Hola! Soy Quizzal</h3>

@@ -9,7 +9,7 @@ const services = [
     id: 'botbee',
     name: 'Botbee',
     description: 'Personajes interactivos para el aprendizaje dinámico',
-    image: '/images/characters/botbee.svg',
+    image: '/images/characters/botbee.png.png',
     color: 'botbee-honey',
     hoverColor: 'botbee-honey-dark',
     borderColor: 'border-botbee-honey',
@@ -31,7 +31,7 @@ const services = [
     id: 'quizzal',
     name: 'Quizzal',
     description: 'Plataforma de evaluaciones personalizadas',
-    image: '/images/characters/quizzal.svg',
+    image: '/images/characters/quizzal.png.png',
     color: 'quizzal-green',
     hoverColor: 'quizzal-forest',
     borderColor: 'border-quizzal-green',
@@ -85,7 +85,8 @@ export default function ServicesSection() {
                   alt={`${service.name} - Personaje Educativo`} 
                   width={80}
                   height={80}
-                  className="w-full h-full"
+                  className="w-full h-full object-contain"
+                  unoptimized
                 />
               </div>
               <h3 className={`text-xl font-bold text-${service.color} mb-3`}>{service.name}</h3>

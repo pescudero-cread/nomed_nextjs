@@ -2,6 +2,7 @@
 const nextConfig = {
   images: {
     domains: ['localhost', 'lh3.googleusercontent.com'],
+    unoptimized: true,
   },
   env: {
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
