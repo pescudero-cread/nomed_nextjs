@@ -1,0 +1,68 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Quizzal - Búho Evaluador -->
+  <defs>
+    <linearGradient id="quizzal-green-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#278C32;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1D6324;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="quizzal-red-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#A0201C;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B1A1A;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Cuerpo principal -->
+  <ellipse cx="100" cy="140" rx="45" ry="35" fill="url(#quizzal-green-gradient)" class="quizzal-character"/>
+  
+  <!-- Cabeza -->
+  <circle cx="100" cy="90" r="40" fill="url(#quizzal-green-gradient)"/>
+  
+  <!-- Orejas de búho -->
+  <path d="M 70 60 Q 75 40 80 60" stroke="url(#quizzal-green-gradient)" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <path d="M 130 60 Q 125 40 120 60" stroke="url(#quizzal-green-gradient)" stroke-width="8" fill="none" stroke-linecap="round"/>
+  
+  <!-- Ojos grandes -->
+  <ellipse cx="85" cy="85" rx="12" ry="18" fill="white" class="quizzal-eyes"/>
+  <ellipse cx="115" cy="85" rx="12" ry="18" fill="white" class="quizzal-eyes"/>
+  <ellipse cx="85" cy="85" rx="8" ry="12" fill="black"/>
+  <ellipse cx="115" cy="85" rx="8" ry="12" fill="black"/>
+  <ellipse cx="85" cy="85" rx="4" ry="6" fill="white"/>
+  <ellipse cx="115" cy="85" rx="4" ry="6" fill="white"/>
+  
+  <!-- Pico -->
+  <path d="M 95 105 L 100 115 L 105 105 Z" fill="#8B4513"/>
+  
+  <!-- Alas -->
+  <ellipse cx="70" cy="120" rx="25" ry="20" fill="url(#quizzal-green-gradient)" class="quizzal-wings"/>
+  <ellipse cx="130" cy="120" rx="25" ry="20" fill="url(#quizzal-green-gradient)" class="quizzal-wings"/>
+  
+  <!-- Patas -->
+  <line x1="90" y1="175" x2="85" y2="190" stroke="#8B4513" stroke-width="4" stroke-linecap="round"/>
+  <line x1="110" y1="175" x2="115" y2="190" stroke="#8B4513" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Garras -->
+  <path d="M 85 190 L 80 195 L 85 192" stroke="#8B4513" stroke-width="2" fill="none"/>
+  <path d="M 85 190 L 90 195 L 85 192" stroke="#8B4513" stroke-width="2" fill="none"/>
+  <path d="M 115 190 L 110 195 L 115 192" stroke="#8B4513" stroke-width="2" fill="none"/>
+  <path d="M 115 190 L 120 195 L 115 192" stroke="#8B4513" stroke-width="2" fill="none"/>
+  
+  <!-- Signos de interrogación flotantes -->
+  <g class="quizzal-question-marks">
+    <text x="50" y="50" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="url(#quizzal-red-gradient)">?</text>
+  </g>
+  
+  <g class="quizzal-question-marks">
+    <text x="150" y="40" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="url(#quizzal-red-gradient)">?</text>
+  </g>
+  
+  <g class="quizzal-question-marks">
+    <text x="30" y="80" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="url(#quizzal-red-gradient)">?</text>
+  </g>
+  
+  <g class="quizzal-question-marks">
+    <text x="170" y="90" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="url(#quizzal-red-gradient)">?</text>
+  </g>
+  
+  <!-- Efectos de brillo -->
+  <circle cx="100" cy="90" r="45" fill="none" stroke="#278C32" stroke-width="2" opacity="0.3" class="glow-effect"/>
+</svg>

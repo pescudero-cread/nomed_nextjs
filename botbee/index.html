@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botbee - Personajes interactivos para el aprendizaje dinámico</title>
+    <meta name="description" content="Crea personajes interactivos que plantean preguntas y explican conceptos de manera dinámica y divertida.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'botbee-primary': '#D0A127',
+                        'botbee-secondary': '#916610',
+                        'botbee-highlight': '#DAAE49',
+                        'botbee-accent': '#009DE6',
+                        'botbee-text': '#1B1918',
+                        'botbee-neutral-600': '#5E6060',
+                        'botbee-neutral-400': '#9FA1A0',
+                        'botbee-gradient-start': '#D0A127',
+                        'botbee-gradient-end': '#B6871A'
+                    },
+                    animation: {
+                        'bounce-gentle': 'bounceGentle 2s ease-in-out infinite',
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'slide-in-left': 'slideInLeft 0.8s ease-out',
+                        'slide-in-right': 'slideInRight 0.8s ease-out',
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'talking': 'talking 0.5s ease-in-out infinite alternate',
+                        'buzz': 'buzz 0.5s ease-in-out infinite',
+                        'dance': 'dance 2s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        bounceGentle: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        slideInLeft: {
+                            '0%': { transform: 'translateX(-50px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' },
+                        },
+                        slideInRight: {
+                            '0%': { transform: 'translateX(50px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        talking: {
+                            '0%': { transform: 'scaleY(1)' },
+                            '100%': { transform: 'scaleY(1.1)' },
+                        },
+                        buzz: {
+                            '0%, 100%': { transform: 'translateX(0px)' },
+                            '25%': { transform: 'translateX(-2px)' },
+                            '75%': { transform: 'translateX(2px)' },
+                        },
+                        dance: {
+                            '0%, 100%': { transform: 'rotate(0deg) translateY(0px)' },
+                            '25%': { transform: 'rotate(-5deg) translateY(-5px)' },
+                            '50%': { transform: 'rotate(0deg) translateY(-10px)' },
+                            '75%': { transform: 'rotate(5deg) translateY(-5px)' },
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .bee-character {
+            position: relative;
+            animation: dance 2s ease-in-out infinite;
+        }
+        
+        .bee-body {
+            animation: buzz 0.5s ease-in-out infinite;
+        }
+        
+        .bee-wings {
+            animation: float 1s ease-in-out infinite;
+        }
+        
+        .bee-antenna {
+            animation: wiggle 2s ease-in-out infinite;
+        }
+        
+        .speech-bubble {
+            position: relative;
+            background: white;
+            border: 3px solid #009DE6;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: talking 0.5s ease-in-out infinite alternate;
+        }
+        
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 30px;
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 15px solid #009DE6;
+        }
+        
+        .speech-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 33px;
+            width: 0;
+            height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-top: 12px solid white;
+        }
+        
+        .chat-message {
+            animation: slideInLeft 0.5s ease-out;
+        }
+        
+        .user-message {
+            animation: slideInRight 0.5s ease-out;
+        }
+        
+        .typing-indicator {
+            animation: fadeIn 0.5s ease-in-out infinite alternate;
+        }
+        
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="font-inter bg-white">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-botbee-accent rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">N</span>
+                        </div>
+                        <span class="text-xl font-bold font-poppins text-botbee-accent">NOMED</span>
+                    </a>
+                    <span class="text-sm text-gray-500">/ Botbee</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="text-gray-600 hover:text-botbee-accent transition-colors">Inicio</a>
+                    <a href="#caracteristicas" class="text-gray-600 hover:text-botbee-accent transition-colors">Características</a>
+                    <a href="#demo" class="text-gray-600 hover:text-botbee-accent transition-colors">Demo</a>
+                    <a href="#contacto" class="text-gray-600 hover:text-botbee-accent transition-colors">Contacto</a>
+                </div>
+                <button class="bg-botbee-accent text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                    Crear Personaje
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-20 bg-gradient-to-br from-botbee-primary to-botbee-gradient-end">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Character Section -->
+                <div class="relative animate-slide-in-left">
+                    <div class="relative">
+                        <!-- Bee Character -->
+                        <div class="bee-character relative z-10">
+                            <img src="../public/images/characters/new/botbee_lentes_v1.2.jpeg" alt="Botbee" class="w-80 h-80 mx-auto object-contain">
+                        </div>
+                        
+                        <!-- Floating icons -->
+                        <div class="absolute top-10 left-10 w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center animate-float">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                            </svg>
+                        </div>
+                        
+                        <div class="absolute top-32 right-16 w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center animate-float" style="animation-delay: 1s;">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                        </div>
+                        
+                        <div class="absolute bottom-20 left-16 w-6 h-6 bg-white bg-opacity-20 rounded-full flex items-center justify-center animate-float" style="animation-delay: 2s;">
+                            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Content Section -->
+                <div class="space-y-8 animate-slide-in-right">
+                    <div class="space-y-6">
+                        <div class="inline-flex items-center space-x-2">
+                            <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                </svg>
+                            </div>
+                            <span class="text-white text-sm font-medium">BOTBEE</span>
+                        </div>
+                        
+                        <h1 class="text-4xl lg:text-6xl font-bold font-poppins text-white leading-tight">
+                            Personajes interactivos para el aprendizaje dinámico
+                        </h1>
+                        
+                        <p class="text-xl text-white text-opacity-90 leading-relaxed">
+                            Crea personajes que plantean preguntas, explican conceptos y 
+                            hacen que el aprendizaje sea más divertido y efectivo.
+                        </p>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-white text-botbee-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors">
+                            ¡Crea tu personaje interactivo ahora!
+                        </button>
+                        <button class="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-botbee-primary transition-colors">
+                            Ver Demo
+                        </button>
+                    </div>
+                    
+                    <div class="text-white text-opacity-80">
+                        <p class="text-sm">🤖 <strong>botbee.nomed.org</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="caracteristicas" class="py-20 bg-nomed-gray">
+        <div class="container mx-auto px-6">
+            <div class="text-center space-y-4 mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold font-poppins text-botbee-accent">Características Principales</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Descubre todas las capacidades que Botbee pone a tu disposición
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="feature-card bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="w-16 h-16 bg-botbee-accent rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-botbee-text mb-4">Panel Intuitivo</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Crea y configura personajes de manera fácil con nuestro panel 
+                        intuitivo que no requiere conocimientos técnicos avanzados.
+                    </p>
+                </div>
+
+                <div class="feature-card bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="w-16 h-16 bg-botbee-accent rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-botbee-accent mb-4">Conexión Fácil</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Conecta tu personaje con WhatsApp, Telegram y otras plataformas 
+                        de mensajería para llegar a tus estudiantes donde estén.
+                    </p>
+                </div>
+
+                <div class="feature-card bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="w-16 h-16 bg-botbee-accent rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-botbee-accent mb-4">Respuestas Controladas</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Alimenta tu personaje con fuentes confiables como Wikipedia 
+                        para asegurar respuestas precisas y educativas.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo Section -->
+    <section id="demo" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center space-y-4 mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold font-poppins text-botbee-accent">Chatea con Botbee</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Prueba cómo funciona Botbee en tiempo real
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-nomed-gray rounded-2xl p-8">
+                    <div class="space-y-6">
+                        <!-- Chat Header -->
+                        <div class="flex items-center space-x-4 pb-6 border-b border-gray-300">
+                            <div class="w-12 h-12 bg-botbee-accent rounded-full flex items-center justify-center">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-botbee-accent">Botbee Asistente</h3>
+                                <p class="text-sm text-gray-600">En línea • Responde en segundos</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Chat Messages -->
+                        <div id="chat-messages" class="space-y-4 min-h-64 max-h-96 overflow-y-auto">
+                            <div class="chat-message">
+                                <div class="speech-bubble">
+                                    <p class="text-gray-700">¡Hola! 👋 Soy Botbee, tu asistente educativo. ¿En qué materia puedo ayudarte hoy?</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Quick Actions -->
+                        <div class="space-y-3">
+                            <p class="text-sm text-gray-600 font-medium">Respuestas rápidas:</p>
+                            <div class="flex flex-wrap gap-2">
+                                <button class="px-4 py-2 bg-white rounded-lg border border-gray-200 hover:border-botbee-accent transition-colors text-sm" onclick="sendMessage('Matemáticas')">
+                                    📐 Matemáticas
+                                </button>
+                                <button class="px-4 py-2 bg-white rounded-lg border border-gray-200 hover:border-botbee-accent transition-colors text-sm" onclick="sendMessage('Historia')">
+                                    📚 Historia
+                                </button>
+                                <button class="px-4 py-2 bg-white rounded-lg border border-gray-200 hover:border-botbee-accent transition-colors text-sm" onclick="sendMessage('Ciencias')">
+                                    🧪 Ciencias
+                                </button>
+                                <button class="px-4 py-2 bg-white rounded-lg border border-gray-200 hover:border-botbee-accent transition-colors text-sm" onclick="sendMessage('Explicar un concepto')">
+                                    💡 Explicar un concepto
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Input Area -->
+                        <div class="flex space-x-4">
+                            <input type="text" id="message-input" placeholder="Escribe tu pregunta aquí..." class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-botbee-accent focus:border-transparent">
+                            <button onclick="sendMessage()" class="bg-botbee-accent text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                                Enviar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-botbee-accent to-blue-600 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <div class="max-w-3xl mx-auto space-y-8">
+                <h2 class="text-3xl lg:text-4xl font-bold font-poppins">
+                    ¿Listo para crear tu personaje educativo?
+                </h2>
+                <p class="text-xl opacity-90">
+                    Únete a miles de educadores que ya están usando Botbee para hacer el aprendizaje más interactivo
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="bg-white text-botbee-accent px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors">
+                        Crear Personaje Gratis
+                    </button>
+                    <button class="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-botbee-accent transition-colors">
+                        Ver Tutorial
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-botbee-accent rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">B</span>
+                        </div>
+                        <span class="text-xl font-bold font-poppins">BOTBEE</span>
+                    </div>
+                    <p class="text-gray-300">
+                        Personajes interactivos que plantean preguntas y explican 
+                        conceptos de manera dinámica y divertida.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Productos</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="../botbee/index.html" class="hover:text-botbee-accent transition-colors">Botbee</a></li>
+                        <li><a href="../monkit/index.html" class="hover:text-botbee-accent transition-colors">Monkit</a></li>
+                        <li><a href="../quizzal/index.html" class="hover:text-botbee-accent transition-colors">Quizzal</a></li>
+                        <li><a href="../app-nomed/index.html" class="hover:text-botbee-accent transition-colors">App Nomed</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Recursos</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-botbee-accent transition-colors">Documentación</a></li>
+                        <li><a href="#" class="hover:text-botbee-accent transition-colors">Tutoriales</a></li>
+                        <li><a href="#" class="hover:text-botbee-accent transition-colors">API</a></li>
+                        <li><a href="#" class="hover:text-botbee-accent transition-colors">Soporte</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Contacto</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>botbee@nomed.org</li>
+                        <li>+56 9 1234 5678</li>
+                        <li>Santiago, Chile</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 Nomed - Botbee. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let messageCount = 0;
+        
+        function sendMessage(customMessage = null) {
+            const input = document.getElementById('message-input');
+            const message = customMessage || input.value.trim();
+            
+            if (!message) return;
+            
+            const chatMessages = document.getElementById('chat-messages');
+            
+            // Add user message
+            const userMessage = document.createElement('div');
+            userMessage.className = 'user-message flex justify-end';
+            userMessage.innerHTML = `
+                <div class="bg-botbee-accent text-white rounded-2xl px-6 py-3 max-w-xs">
+                    <p>${message}</p>
+                </div>
+            `;
+            chatMessages.appendChild(userMessage);
+            
+            // Clear input if not a quick action
+            if (!customMessage) {
+                input.value = '';
+            }
+            
+            // Show typing indicator
+            const typingIndicator = document.createElement('div');
+            typingIndicator.className = 'chat-message';
+            typingIndicator.innerHTML = `
+                <div class="typing-indicator flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                        <div class="w-3 h-3 bg-gray-500 rounded-full animate-bounce"></div>
+                    </div>
+                    <div class="bg-white rounded-2xl px-6 py-3">
+                        <div class="flex space-x-1">
+                            <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                            <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.1s;"></div>
+                            <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.2s;"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            chatMessages.appendChild(typingIndicator);
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Simulate response after delay
+            setTimeout(() => {
+                typingIndicator.remove();
+                
+                const responses = {
+                    'Matemáticas': '¡Excelente elección! 📐 Puedo ayudarte con álgebra, geometría, cálculo y más. ¿Hay algún tema específico que te gustaría repasar?',
+                    'Historia': '¡Perfecto! 📚 Soy muy bueno con fechas, eventos históricos y contextos. ¿Qué período histórico te interesa más?',
+                    'Ciencias': '¡Genial! 🧪 Puedo explicarte conceptos de física, química, biología y ciencias naturales. ¿En qué área necesitas ayuda?',
+                    'Explicar un concepto': '¡Por supuesto! 💡 Puedo explicar cualquier concepto de manera simple y con ejemplos. ¿Qué concepto te gustaría que te explique?',
+                    'default': '¡Interesante pregunta! 🤔 Déjame pensar en la mejor manera de explicarte esto. Basándome en fuentes confiables, puedo ayudarte a entender este tema paso a paso.'
+                };
+                
+                const response = responses[message] || responses['default'];
+                
+                const botMessage = document.createElement('div');
+                botMessage.className = 'chat-message';
+                botMessage.innerHTML = `
+                    <div class="speech-bubble">
+                        <p class="text-gray-700">${response}</p>
+                    </div>
+                `;
+                chatMessages.appendChild(botMessage);
+                
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                messageCount++;
+                
+                // Add follow-up suggestions after a few messages
+                if (messageCount === 3) {
+                    setTimeout(() => {
+                        const followUp = document.createElement('div');
+                        followUp.className = 'chat-message';
+                        followUp.innerHTML = `
+                            <div class="speech-bubble">
+                                <p class="text-gray-700">¿Te gustaría que creemos un personaje personalizado para tu clase? ¡Puedo adaptarme a cualquier materia y nivel educativo! 🎓</p>
+                            </div>
+                        `;
+                        chatMessages.appendChild(followUp);
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    }, 2000);
+                }
+            }, 1500 + Math.random() * 1000);
+        }
+        
+        // Handle Enter key
+        document.getElementById('message-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('[class*="animate-"]').forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

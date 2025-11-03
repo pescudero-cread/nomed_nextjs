@@ -1,0 +1,135 @@
+/* Performance optimizations for NOMED website */
+
+/* Critical CSS for above-the-fold content */
+.hero-section {
+    contain: layout style paint;
+    will-change: transform;
+}
+
+/* Optimize animations */
+.animate-fade-in-up {
+    will-change: transform, opacity;
+}
+
+.animate-float {
+    will-change: transform;
+}
+
+/* Reduce repaints */
+.card {
+    contain: layout style;
+    transform: translateZ(0);
+}
+
+/* Optimize images */
+img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+/* Lazy loading styles */
+.lazy-load {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lazy-load.loaded {
+    opacity: 1;
+}
+
+/* Smooth scrolling optimization */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+/* Reduce layout thrashing */
+.fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transform: translateZ(0);
+}
+
+/* Optimize text rendering */
+body {
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Reduce paint complexity */
+.gradient-bg {
+    background-attachment: fixed;
+}
+
+/* Optimize shadows */
+.shadow-optimized {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    will-change: box-shadow;
+}
+
+/* Performance monitoring */
+.performance-indicator {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    z-index: 9999;
+    display: none;
+}
+
+/* Critical resource hints */
+.preload-hint {
+    display: none;
+}
+
+/* Optimize form interactions */
+input, textarea, button {
+    touch-action: manipulation;
+}
+
+/* Reduce animation complexity on low-end devices */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .card {
+        border: 2px solid currentColor;
+    }
+    
+    .button {
+        border: 2px solid currentColor;
+    }
+}
+
+/* Dark mode optimizations */
+@media (prefers-color-scheme: dark) {
+    .card {
+        background-color: #1f2937;
+        color: #f9fafb;
+    }
+}
+
+/* Print optimizations */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    .card {
+        break-inside: avoid;
+    }
+}

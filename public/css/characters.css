@@ -1,0 +1,287 @@
+/* Animaciones específicas para personajes de NOMED */
+
+/* Botbee - Abeja Educativa */
+.botbee-character {
+    position: relative;
+    animation: botbee-float 3s ease-in-out infinite;
+}
+
+.botbee-wings {
+    animation: botbee-wings 0.5s ease-in-out infinite alternate;
+}
+
+.botbee-antennae {
+    animation: botbee-antennae 2s ease-in-out infinite;
+}
+
+.botbee-eyes {
+    animation: botbee-blink 4s ease-in-out infinite;
+}
+
+@keyframes botbee-float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+@keyframes botbee-wings {
+    0% { transform: scaleY(1) rotate(0deg); }
+    100% { transform: scaleY(0.8) rotate(5deg); }
+}
+
+@keyframes botbee-antennae {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    75% { transform: rotate(-5deg); }
+}
+
+@keyframes botbee-blink {
+    0%, 90%, 100% { transform: scaleY(1); }
+    95% { transform: scaleY(0.1); }
+}
+
+/* Monkit - Mono Constructor */
+.monkit-character {
+    position: relative;
+    animation: monkit-bounce 2s ease-in-out infinite;
+}
+
+.monkit-tools {
+    animation: monkit-tools 1.5s ease-in-out infinite;
+}
+
+.monkit-gears {
+    animation: monkit-gears 3s linear infinite;
+}
+
+.monkit-eyes {
+    animation: monkit-wink 3s ease-in-out infinite;
+}
+
+@keyframes monkit-bounce {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+}
+
+@keyframes monkit-tools {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(10deg) scale(1.1); }
+}
+
+@keyframes monkit-gears {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes monkit-wink {
+    0%, 90%, 100% { transform: scaleY(1); }
+    95% { transform: scaleY(0.1); }
+}
+
+/* Quizzal - Búho Evaluador */
+.quizzal-character {
+    position: relative;
+    animation: quizzal-float 4s ease-in-out infinite;
+}
+
+.quizzal-eyes {
+    animation: quizzal-blink 5s ease-in-out infinite;
+}
+
+.quizzal-wings {
+    animation: quizzal-wings 2s ease-in-out infinite;
+}
+
+.quizzal-question-marks {
+    animation: quizzal-questions 3s ease-in-out infinite;
+}
+
+@keyframes quizzal-float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(1deg); }
+}
+
+@keyframes quizzal-blink {
+    0%, 90%, 100% { transform: scaleY(1); }
+    95% { transform: scaleY(0.1); }
+}
+
+@keyframes quizzal-wings {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(0.9); }
+}
+
+@keyframes quizzal-questions {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(10deg) scale(1.2); }
+}
+
+/* App Nomed - Robot Inteligente */
+.app-nomed-character {
+    position: relative;
+    animation: app-nomed-float 3.5s ease-in-out infinite;
+}
+
+.app-nomed-screen {
+    animation: app-nomed-screen 2s ease-in-out infinite;
+}
+
+.app-nomed-antenna {
+    animation: app-nomed-antenna 1.5s ease-in-out infinite;
+}
+
+.app-nomed-icons {
+    animation: app-nomed-icons 4s ease-in-out infinite;
+}
+
+@keyframes app-nomed-float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+}
+
+@keyframes app-nomed-screen {
+    0%, 100% { 
+        box-shadow: 0 0 10px #019EE6;
+        opacity: 0.8;
+    }
+    50% { 
+        box-shadow: 0 0 20px #019EE6, 0 0 30px #019EE6;
+        opacity: 1;
+    }
+}
+
+@keyframes app-nomed-antenna {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    75% { transform: rotate(-5deg); }
+}
+
+@keyframes app-nomed-icons {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-5px) scale(1.1); }
+}
+
+/* Efectos de hover para personajes */
+.character-hover:hover .botbee-character {
+    animation: botbee-float 1s ease-in-out infinite;
+}
+
+.character-hover:hover .monkit-character {
+    animation: monkit-bounce 1s ease-in-out infinite;
+}
+
+.character-hover:hover .quizzal-character {
+    animation: quizzal-float 1s ease-in-out infinite;
+}
+
+.character-hover:hover .app-nomed-character {
+    animation: app-nomed-float 1s ease-in-out infinite;
+}
+
+/* Efectos de conversación */
+.talking-animation {
+    animation: talking 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes talking {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
+}
+
+/* Efectos de brillo para pantallas */
+.glow-effect {
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    0% { 
+        box-shadow: 0 0 5px rgba(1, 158, 230, 0.5);
+    }
+    100% { 
+        box-shadow: 0 0 20px rgba(1, 158, 230, 0.8), 0 0 30px rgba(1, 158, 230, 0.6);
+    }
+}
+
+/* Efectos de partículas flotantes */
+.floating-particles {
+    position: relative;
+    overflow: hidden;
+}
+
+.floating-particles::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    animation: particles-float 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes particles-float {
+    0% { transform: translateY(0px) translateX(0px); }
+    100% { transform: translateY(-100px) translateX(-100px); }
+}
+
+/* Efectos de gradiente dinámico */
+.dynamic-gradient {
+    background: linear-gradient(-45deg, #003A8F, #013763, #019EE6, #009DE6);
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+}
+
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Efectos de pulso para elementos importantes */
+.pulse-important {
+    animation: pulse-important 2s ease-in-out infinite;
+}
+
+@keyframes pulse-important {
+    0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 58, 143, 0.7);
+    }
+    50% { 
+        transform: scale(1.05);
+        box-shadow: 0 0 0 10px rgba(0, 58, 143, 0);
+    }
+}
+
+/* Efectos de entrada para personajes */
+.character-entrance {
+    animation: character-entrance 1s ease-out;
+}
+
+@keyframes character-entrance {
+    0% { 
+        transform: translateY(50px) scale(0.8);
+        opacity: 0;
+    }
+    100% { 
+        transform: translateY(0px) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Efectos de salida para personajes */
+.character-exit {
+    animation: character-exit 0.5s ease-in;
+}
+
+@keyframes character-exit {
+    0% { 
+        transform: translateY(0px) scale(1);
+        opacity: 1;
+    }
+    100% { 
+        transform: translateY(-50px) scale(0.8);
+        opacity: 0;
+    }
+}

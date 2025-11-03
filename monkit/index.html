@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monkit | Nomed</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    .animate-tool {
+      animation: tool-move 1.5s infinite alternate;
+      transform-origin: right center;
+    }
+    @keyframes tool-move {
+      0% { transform: rotate(-10deg); }
+      100% { transform: rotate(20deg); }
+    }
+    .animate-arm {
+      animation: arm-move 2s infinite alternate;
+      transform-origin: center top;
+    }
+    @keyframes arm-move {
+      0% { transform: rotate(-5deg); }
+      100% { transform: rotate(15deg); }
+    }
+    .animate-eye {
+      animation: eye-blink 4s infinite;
+    }
+    @keyframes eye-blink {
+      0%, 90%, 100% { r: 8; }
+      95% { r: 2; }
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-orange-200 via-orange-50 to-white min-h-screen flex flex-col">
+  <!-- Navbar -->
+  <nav class="bg-blue-900 text-white px-8 py-4 flex justify-between items-center shadow">
+    <div class="font-bold text-2xl tracking-wide">Nomed</div>
+    <div class="space-x-8 hidden md:flex">
+      <a href="/" class="hover:underline">Inicio</a>
+      <a href="/#servicios" class="hover:underline">Servicios</a>
+      <a href="/#nosotros" class="hover:underline">Sobre Nosotros</a>
+      <a href="/#contacto" class="hover:underline">Contacto</a>
+    </div>
+    <div class="text-sm font-semibold">Descubre nuestras soluciones</div>
+  </nav>
+
+  <!-- Breadcrumb -->
+  <div class="bg-white shadow-sm px-8 py-2 text-gray-600 text-sm">
+    <span class="font-bold text-blue-900">NOMED</span> / Monkit
+  </div>
+
+  <!-- Main Content -->
+  <main class="flex flex-col items-center justify-center flex-1">
+    <!-- Personaje Monkit imagen oficial -->
+    <div class="mb-8">
+      <img src="/images/characters/botbee_v1.jpeg" alt="Monkit personaje" class="w-[400px] h-auto mx-auto drop-shadow-xl animate-float" />
+    </div>
+
+    <!-- Botón destacado -->
+    <button class="px-10 py-4 bg-orange-600 text-white rounded-xl shadow-lg hover:bg-orange-700 transition font-bold text-xl mb-8">
+      Comenzar Ahora
+    </button>
+
+    <!-- Demo interactivo -->
+    <section class="w-full max-w-xl bg-white rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-2xl font-bold text-orange-700 mb-4">Demo Interactiva: Creador de Contenido</h2>
+      <form class="space-y-4">
+        <div>
+          <label class="block font-semibold mb-1">Tipo de material:</label>
+          <select class="w-full border rounded px-3 py-2">
+            <option>Guía</option>
+            <option>Ejercicio</option>
+            <option>Juego</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-semibold mb-1">Tema:</label>
+          <input type="text" class="w-full border rounded px-3 py-2" placeholder="Ej: Fracciones, Animales, etc.">
+        </div>
+        <button type="submit" class="w-full bg-orange-600 text-white py-2 rounded-lg font-bold hover:bg-orange-700 transition">
+          Generar Contenido
+        </button>
+      </form>
+      <!-- Resultado demo -->
+      <div id="demo-result" class="mt-6 text-gray-700"></div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white py-6 mt-12 text-center">
+    © 2025 Nomed. Todos los derechos reservados.
+  </footer>
+
+  <!-- Demo JS -->
+  <script>
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const tipo = this.querySelector('select').value;
+      const tema = this.querySelector('input').value;
+      document.getElementById('demo-result').innerHTML =
+        `<div class="p-4 bg-orange-50 rounded-lg shadow mt-2">
+          <strong>¡Contenido generado!</strong><br>
+          Tipo: <span class="font-semibold">${tipo}</span><br>
+          Tema: <span class="font-semibold">${tema || 'Sin tema'}</span>
+        </div>`;
+    });
+  </script>
+</body>
+</html>

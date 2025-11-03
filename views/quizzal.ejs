@@ -1,0 +1,413 @@
+<!-- Navigation -->
+<nav class="bg-white shadow-lg">
+    <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <a href="/" class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-quizzal-text rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">N</span>
+                    </div>
+                    <span class="text-xl font-bold font-poppins text-quizzal-text">NOMED</span>
+                </a>
+                <span class="text-sm text-gray-500">/ Quizzal</span>
+            </div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="/" class="text-gray-600 hover:text-quizzal-text transition-colors">Inicio</a>
+                <a href="#caracteristicas" class="text-gray-600 hover:text-quizzal-text transition-colors">Características</a>
+                <a href="#demo" class="text-gray-600 hover:text-quizzal-text transition-colors">Demo</a>
+                <a href="#contacto" class="text-gray-600 hover:text-quizzal-text transition-colors">Contacto</a>
+            </div>
+            <button class="bg-quizzal-accent text-white px-6 py-2 rounded-lg hover:bg-orange-600 transition-colors">
+                Crear Evaluación
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="py-20 bg-gradient-to-br from-quizzal-primary to-quizzal-gradient-end">
+    <div class="container mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <!-- Character Section -->
+            <div class="relative animate-slide-in-left">
+                <div class="relative">
+                    <!-- Owl Character -->
+                    <div class="owl-character relative z-10">
+                        <div class="w-80 h-80 mx-auto relative">
+                            <!-- Owl Body -->
+                            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-48 h-64 bg-amber-600 rounded-full relative">
+                                <!-- Owl Head -->
+                                <div class="absolute -top-12 left-1/2 transform -translate-x-1/2 w-40 h-32 bg-amber-500 rounded-full">
+                                    <!-- Ear tufts -->
+                                    <div class="absolute -top-4 left-6 w-4 h-8 bg-amber-600 rounded-full"></div>
+                                    <div class="absolute -top-4 right-6 w-4 h-8 bg-amber-600 rounded-full"></div>
+                                    
+                                    <!-- Eyes -->
+                                    <div class="owl-eyes absolute top-8 left-6 w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                                        <div class="w-5 h-5 bg-quizzal-accent rounded-full"></div>
+                                    </div>
+                                    <div class="owl-eyes absolute top-8 right-6 w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                                        <div class="w-5 h-5 bg-quizzal-accent rounded-full"></div>
+                                    </div>
+                                    
+                                    <!-- Beak -->
+                                    <div class="absolute top-16 left-1/2 transform -translate-x-1/2 w-4 h-3 bg-yellow-600 rounded-full"></div>
+                                </div>
+                                
+                                <!-- Wings -->
+                                <div class="owl-wings absolute top-16 -left-12 w-20 h-32 bg-amber-500 rounded-full border-4 border-amber-600"></div>
+                                <div class="owl-wings absolute top-16 -right-12 w-20 h-32 bg-amber-500 rounded-full border-4 border-amber-600" style="animation-delay: 1.5s;"></div>
+                                
+                                <!-- Legs -->
+                                <div class="absolute bottom-0 left-12 w-6 h-16 bg-yellow-600 rounded-full"></div>
+                                <div class="absolute bottom-0 right-12 w-6 h-16 bg-yellow-600 rounded-full"></div>
+                            </div>
+                            
+                            <!-- Floating question marks -->
+                            <div class="question-mark absolute top-10 left-8 w-8 h-8 bg-white rounded-full flex items-center justify-center text-quizzal-accent font-bold text-lg">?</div>
+                            <div class="question-mark absolute top-20 right-12 w-6 h-6 bg-white rounded-full flex items-center justify-center text-quizzal-accent font-bold text-sm" style="animation-delay: 1s;">?</div>
+                            <div class="question-mark absolute bottom-20 left-16 w-4 h-4 bg-white rounded-full flex items-center justify-center text-quizzal-accent font-bold text-xs" style="animation-delay: 2s;">?</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Floating icons -->
+                    <div class="feature-icon absolute top-10 left-10 w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                        </svg>
+                    </div>
+                    
+                    <div class="feature-icon absolute top-32 right-16 w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center" style="animation-delay: 1s;">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    
+                    <div class="feature-icon absolute bottom-20 left-16 w-6 h-6 bg-white bg-opacity-20 rounded-full flex items-center justify-center" style="animation-delay: 2s;">
+                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Content Section -->
+            <div class="space-y-8 animate-slide-in-right">
+                <div class="space-y-6">
+                    <div class="inline-flex items-center space-x-2">
+                        <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-white text-sm font-medium">QUIZZAL</span>
+                    </div>
+                    
+                    <h1 class="text-4xl lg:text-6xl font-bold font-poppins text-white leading-tight">
+                        Plataforma de evaluaciones personalizadas
+                    </h1>
+                    
+                    <p class="text-xl text-white text-opacity-90 leading-relaxed">
+                        Crea evaluaciones personalizadas, simulaciones de exámenes de admisión 
+                        y certificaciones para docentes con retroalimentación inmediata.
+                    </p>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button class="bg-white text-quizzal-accent px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors">
+                        Crea tu evaluación personalizada ahora
+                    </button>
+                    <button class="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-quizzal-accent transition-colors">
+                        Ver Demo
+                    </button>
+                </div>
+                
+                <div class="text-white text-opacity-80">
+                    <p class="text-sm">🎯 <strong>quizzal.nomed.org</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section id="caracteristicas" class="py-20 bg-nomed-gray">
+    <div class="container mx-auto px-6">
+        <div class="text-center space-y-4 mb-16">
+            <h2 class="text-3xl lg:text-4xl font-bold font-poppins text-quizzal-text">Características Principales</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Descubre todas las herramientas que Quizzal pone a tu disposición
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            <% features.forEach((feature, index) => { %>
+            <div class="quiz-card bg-white rounded-2xl p-8 shadow-lg">
+                <div class="w-16 h-16 bg-quizzal-accent rounded-xl flex items-center justify-center mb-6">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <% if (feature.icon === 'book') { %>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        <% } else if (feature.icon === 'zap') { %>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        <% } else { %>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                        <% } %>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-quizzal-text mb-4"><%= feature.title %></h3>
+                <p class="text-gray-600 leading-relaxed">
+                    <%= feature.description %>
+                </p>
+            </div>
+            <% }); %>
+        </div>
+    </div>
+</section>
+
+<!-- Interactive Demo Section -->
+<section id="demo" class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+        <div class="text-center space-y-4 mb-16">
+            <h2 class="text-3xl lg:text-4xl font-bold font-poppins text-quizzal-text">Prueba Quizzal</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Experimenta cómo funciona nuestro sistema de evaluaciones
+            </p>
+        </div>
+        
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-nomed-gray rounded-2xl p-8">
+                <div class="space-y-8">
+                    <!-- Quiz Header -->
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-quizzal-accent rounded-full flex items-center justify-center">
+                                <span class="text-white font-bold text-xl">Q</span>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-quizzal-text"><%= demoQuiz.title %></h3>
+                                <p class="text-sm text-gray-600">Pregunta <%= demoQuiz.currentQuestion %> de <%= demoQuiz.totalQuestions %></p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-2xl font-bold text-quizzal-accent"><%= demoQuiz.progress %>%</div>
+                            <div class="text-sm text-gray-600">Completado</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Progress Bar -->
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="progress-bar bg-quizzal-accent h-2 rounded-full" style="width: <%= demoQuiz.progress %>%"></div>
+                    </div>
+                    
+                    <!-- Question -->
+                    <div class="bg-white rounded-2xl p-8">
+                        <h4 class="text-xl font-bold text-quizzal-text mb-6">
+                            <%= demoQuiz.question %>
+                        </h4>
+                        
+                        <div class="space-y-4">
+                            <% demoQuiz.options.forEach((option, index) => { %>
+                            <button class="w-full text-left p-4 border-2 border-gray-200 rounded-lg hover:border-quizzal-accent transition-colors" onclick="selectAnswer(this, <%= option.correct %>)">
+                                <span class="font-medium"><%= option.id %>)</span> <%= option.text %>
+                            </button>
+                            <% }); %>
+                        </div>
+                        
+                        <div id="feedback" class="mt-6 hidden">
+                            <div class="p-4 rounded-lg">
+                                <div id="feedback-content"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation -->
+                    <div class="flex justify-between">
+                        <button class="px-6 py-3 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50 transition-colors" disabled>
+                            ← Anterior
+                        </button>
+                        <button id="next-btn" class="px-6 py-3 bg-quizzal-accent text-white rounded-lg hover:bg-orange-600 transition-colors" onclick="nextQuestion()" disabled>
+                            Siguiente →
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-20 bg-gradient-to-r from-quizzal-accent to-orange-600 text-white">
+    <div class="container mx-auto px-6 text-center">
+        <div class="max-w-3xl mx-auto space-y-8">
+            <h2 class="text-3xl lg:text-4xl font-bold font-poppins">
+                ¿Listo para crear evaluaciones personalizadas?
+            </h2>
+            <p class="text-xl opacity-90">
+                Únete a miles de educadores que ya están usando Quizzal para evaluar y certificar conocimientos
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="bg-white text-quizzal-accent px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors">
+                    Crear Evaluación Gratis
+                </button>
+                <button class="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-quizzal-accent transition-colors">
+                    Ver Casos de Éxito
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .owl-character {
+        position: relative;
+        animation: bounce-gentle 2s ease-in-out infinite;
+    }
+    
+    .owl-eyes {
+        animation: pulse-slow 2s ease-in-out infinite;
+    }
+    
+    .owl-wings {
+        animation: float 3s ease-in-out infinite;
+    }
+    
+    .quiz-card {
+        transition: all 0.3s ease;
+    }
+    
+    .quiz-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .progress-bar {
+        animation: pulse-slow 2s ease-in-out infinite;
+    }
+    
+    .question-mark {
+        animation: spin-slow 3s linear infinite;
+    }
+    
+    .feature-icon {
+        animation: float 3s ease-in-out infinite;
+    }
+    
+    .feature-icon:nth-child(2n) {
+        animation-delay: 1s;
+    }
+    
+    .feature-icon:nth-child(3n) {
+        animation-delay: 2s;
+    }
+</style>
+
+<script>
+    let currentQuestion = 1;
+    let score = 0;
+    
+    function selectAnswer(button, isCorrect) {
+        // Remove previous selections
+        document.querySelectorAll('button').forEach(btn => {
+            if (btn.onclick && btn.onclick.toString().includes('selectAnswer')) {
+                btn.classList.remove('border-quizzal-accent', 'bg-quizzal-accent', 'text-white', 'border-green-500', 'bg-green-500', 'border-red-500', 'bg-red-500');
+                btn.classList.add('border-gray-200');
+            }
+        });
+        
+        // Style selected answer
+        button.classList.remove('border-gray-200');
+        
+        if (isCorrect) {
+            button.classList.add('border-green-500', 'bg-green-500', 'text-white');
+            score++;
+        } else {
+            button.classList.add('border-red-500', 'bg-red-500', 'text-white');
+        }
+        
+        // Show feedback
+        const feedback = document.getElementById('feedback');
+        const feedbackContent = document.getElementById('feedback-content');
+        
+        if (isCorrect) {
+            feedbackContent.innerHTML = `
+                <div class="flex items-center space-x-2 text-green-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span class="font-semibold">¡Correcto!</span>
+                </div>
+                <p class="mt-2 text-gray-700">Excelente trabajo. 15 + 27 = 42. Has aplicado correctamente la suma de números enteros.</p>
+            `;
+            feedback.classList.remove('bg-red-50', 'border-red-200');
+            feedback.classList.add('bg-green-50', 'border-green-200');
+        } else {
+            feedbackContent.innerHTML = `
+                <div class="flex items-center space-x-2 text-red-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                    <span class="font-semibold">Incorrecto</span>
+                </div>
+                <p class="mt-2 text-gray-700">La respuesta correcta es 42. Recuerda: 15 + 27 = (10 + 20) + (5 + 7) = 30 + 12 = 42</p>
+            `;
+            feedback.classList.remove('bg-green-50', 'border-green-200');
+            feedback.classList.add('bg-red-50', 'border-red-200');
+        }
+        
+        feedback.classList.remove('hidden');
+        
+        // Enable next button
+        document.getElementById('next-btn').disabled = false;
+    }
+    
+    function nextQuestion() {
+        if (currentQuestion < 5) {
+            currentQuestion++;
+            // Update progress
+            const progressBar = document.querySelector('.progress-bar');
+            const progressText = document.querySelector('.text-2xl');
+            const progress = (currentQuestion / 5) * 100;
+            
+            progressBar.style.width = progress + '%';
+            progressText.textContent = Math.round(progress) + '%';
+            
+            // Update question number
+            document.querySelector('.text-sm.text-gray-600').textContent = `Pregunta ${currentQuestion} de 5`;
+            
+            // Reset question
+            document.querySelectorAll('button').forEach(btn => {
+                if (btn.onclick && btn.onclick.toString().includes('selectAnswer')) {
+                    btn.classList.remove('border-quizzal-accent', 'bg-quizzal-accent', 'text-white', 'border-green-500', 'bg-green-500', 'border-red-500', 'bg-red-500');
+                    btn.classList.add('border-gray-200');
+                }
+            });
+            
+            document.getElementById('feedback').classList.add('hidden');
+            document.getElementById('next-btn').disabled = true;
+            
+            // Update question content (demo purposes)
+            const questions = [
+                "¿Cuál es el resultado de 15 + 27?",
+                "¿Cuál es el resultado de 8 × 7?",
+                "¿Cuál es el resultado de 144 ÷ 12?",
+                "¿Cuál es el resultado de 25 - 13?",
+                "¿Cuál es el resultado de 3² + 4²?"
+            ];
+            
+            if (currentQuestion <= questions.length) {
+                document.querySelector('h4').textContent = questions[currentQuestion - 1];
+            }
+        } else {
+            // Show results
+            alert(`¡Evaluación completada! Puntuación: ${score}/5 (${Math.round((score/5)*100)}%)`);
+            // Reset for demo
+            currentQuestion = 1;
+            score = 0;
+            document.querySelector('.progress-bar').style.width = '20%';
+            document.querySelector('.text-2xl').textContent = '20%';
+            document.querySelector('.text-sm.text-gray-600').textContent = 'Pregunta 1 de 5';
+            document.getElementById('feedback').classList.add('hidden');
+            document.getElementById('next-btn').disabled = true;
+        }
+    }
+</script>

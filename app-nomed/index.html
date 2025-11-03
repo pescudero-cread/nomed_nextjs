@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Nomed - Refuerzo académico interactivo para estudiantes</title>
+    <meta name="description" content="Aplicación móvil integral con contenido interactivo, gamificación y aprendizaje personalizado.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'nomed-primary': '#003A8F',
+                        'nomed-secondary': '#019EE6',
+                        'nomed-accent-dark': '#013763',
+                        'nomed-accent-light': '#6F4B24',
+                        'nomed-accent-medium': '#8C6430',
+                        'nomed-text': '#222221',
+                        'nomed-neutral-400': '#A4A59F',
+                        'nomed-background': '#FDFDFD',
+                        'nomed-gradient-start': '#013763',
+                        'nomed-gradient-end': '#019EE6'
+                    },
+                    animation: {
+                        'bounce-gentle': 'bounceGentle 2s ease-in-out infinite',
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'slide-in-left': 'slideInLeft 0.8s ease-out',
+                        'slide-in-right': 'slideInRight 0.8s ease-out',
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'pulse-slow': 'pulse 2s ease-in-out infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        bounceGentle: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        slideInLeft: {
+                            '0%': { transform: 'translateX(-50px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' },
+                        },
+                        slideInRight: {
+                            '0%': { transform: 'translateX(50px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        glow: {
+                            '0%': { 
+                                boxShadow: '0 0 20px rgba(255, 59, 59, 0.5)',
+                                transform: 'scale(1)'
+                            },
+                            '100%': { 
+                                boxShadow: '0 0 40px rgba(255, 59, 59, 0.8)',
+                                transform: 'scale(1.05)'
+                            },
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .robot-character {
+            position: relative;
+            animation: bounce-gentle 2s ease-in-out infinite;
+        }
+        
+        .robot-eyes {
+            animation: pulse-slow 2s ease-in-out infinite;
+        }
+        
+        .robot-antenna {
+            animation: wiggle 3s ease-in-out infinite;
+        }
+        
+        .robot-screen {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        .app-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .app-icon:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+        
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mobile-screen {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .app-preview {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .app-preview:nth-child(2n) {
+            animation-delay: 1s;
+        }
+        
+        .app-preview:nth-child(3n) {
+            animation-delay: 2s;
+        }
+    </style>
+</head>
+<body class="font-inter bg-white">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-nomed-text rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">N</span>
+                        </div>
+                        <span class="text-xl font-bold font-poppins text-nomed-text">NOMED</span>
+                    </a>
+                    <span class="text-sm text-gray-500">/ App Nomed</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="text-gray-600 hover:text-nomed-text transition-colors">Inicio</a>
+                    <a href="#caracteristicas" class="text-gray-600 hover:text-nomed-text transition-colors">Características</a>
+                    <a href="#demo" class="text-gray-600 hover:text-nomed-text transition-colors">Demo</a>
+                    <a href="#contacto" class="text-gray-600 hover:text-nomed-text transition-colors">Contacto</a>
+                </div>
+                <button class="bg-nomed-secondary text-white px-6 py-2 rounded-lg hover:bg-red-600 transition-colors">
+                    Descargar App
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-20 bg-gradient-to-br from-nomed-gradient-start to-nomed-gradient-end">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Character Section -->
+                <div class="relative animate-slide-in-left">
+                    <div class="relative">
+                        <!-- Robot Character -->
+                        <div class="robot-character relative z-10">
+                            <div class="w-80 h-80 mx-auto relative">
+                                <!-- Robot Body -->
+                                <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-40 h-48 bg-gray-400 rounded-lg relative">
+                                    <!-- Robot Head -->
+                                    <div class="absolute -top-16 left-1/2 transform -translate-x-1/2 w-32 h-32 bg-gray-300 rounded-lg">
+                                        <!-- Antenna -->
+                                        <div class="robot-antenna absolute -top-8 left-1/2 transform -translate-x-1/2 w-2 h-8 bg-nomed-secondary">
+                                            <div class="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-nomed-secondary rounded-full"></div>
+                                        </div>
+                                        
+                                        <!-- Screen -->
+                                        <div class="robot-screen absolute top-4 left-1/2 transform -translate-x-1/2 w-20 h-12 bg-blue-500 rounded flex items-center justify-center">
+                                            <div class="text-white text-xs font-mono">NOMED</div>
+                                        </div>
+                                        
+                                        <!-- Eyes -->
+                                        <div class="robot-eyes absolute bottom-6 left-6 w-4 h-4 bg-white rounded-full flex items-center justify-center">
+                                            <div class="w-2 h-2 bg-nomed-secondary rounded-full"></div>
+                                        </div>
+                                        <div class="robot-eyes absolute bottom-6 right-6 w-4 h-4 bg-white rounded-full flex items-center justify-center">
+                                            <div class="w-2 h-2 bg-nomed-secondary rounded-full"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Arms -->
+                                    <div class="absolute top-12 -left-6 w-8 h-20 bg-gray-400 rounded-full"></div>
+                                    <div class="absolute top-12 -right-6 w-8 h-20 bg-gray-400 rounded-full"></div>
+                                    
+                                    <!-- Legs -->
+                                    <div class="absolute bottom-0 left-8 w-8 h-16 bg-gray-500 rounded-full"></div>
+                                    <div class="absolute bottom-0 right-8 w-8 h-16 bg-gray-500 rounded-full"></div>
+                                    
+                                    <!-- Control Panel -->
+                                    <div class="absolute top-8 left-1/2 transform -translate-x-1/2 w-16 h-8 bg-gray-600 rounded flex items-center justify-center space-x-1">
+                                        <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                                        <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                                        <div class="w-2 h-2 bg-red-400 rounded-full"></div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Floating app icons -->
+                                <div class="app-preview absolute top-10 left-8 w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg">
+                                    <span class="text-nomed-secondary font-bold text-lg">📱</span>
+                                </div>
+                                
+                                <div class="app-preview absolute top-20 right-12 w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-lg" style="animation-delay: 1s;">
+                                    <span class="text-nomed-secondary font-bold text-sm">🎮</span>
+                                </div>
+                                
+                                <div class="app-preview absolute bottom-20 left-12 w-8 h-8 bg-white rounded-xl flex items-center justify-center shadow-lg" style="animation-delay: 2s;">
+                                    <span class="text-nomed-secondary font-bold text-xs">📚</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating icons -->
+                        <div class="absolute top-10 left-10 w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center animate-float">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        
+                        <div class="absolute top-32 right-16 w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center animate-float" style="animation-delay: 1s;">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        
+                        <div class="absolute bottom-20 left-16 w-6 h-6 bg-white bg-opacity-20 rounded-full flex items-center justify-center animate-float" style="animation-delay: 2s;">
+                            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Content Section -->
+                <div class="space-y-8 animate-slide-in-right">
+                    <div class="space-y-6">
+                        <div class="inline-flex items-center space-x-2">
+                            <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <span class="text-white text-sm font-medium">APP NOMED</span>
+                        </div>
+                        
+                        <h1 class="text-4xl lg:text-6xl font-bold font-poppins text-white leading-tight">
+                            Refuerzo académico interactivo para estudiantes
+                        </h1>
+                        
+                        <p class="text-xl text-white text-opacity-90 leading-relaxed">
+                            Aplicación móvil integral con contenido interactivo, gamificación 
+                            y aprendizaje personalizado que se adapta a cada estudiante.
+                        </p>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-white text-nomed-secondary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors">
+                            Accede a nuestra app para mejorar tu aprendizaje
+                        </button>
+                        <button class="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-nomed-secondary transition-colors">
+                            Ver Demo
+                        </button>
+                    </div>
+                    
+                    <div class="text-white text-opacity-80">
+                        <p class="text-sm">📱 <strong>app.nomed.org</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="caracteristicas" class="py-20 bg-nomed-gray">
+        <div class="container mx-auto px-6">
+            <div class="text-center space-y-4 mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold font-poppins text-nomed-text">Características Principales</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Descubre todas las funcionalidades que App Nomed pone a tu disposición
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="feature-card bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="w-16 h-16 bg-nomed-secondary rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-nomed-text mb-4">Contenido Interactivo</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Matemáticas y otras áreas con contenido interactivo que se adapta 
+                        al nivel y ritmo de aprendizaje de cada estudiante.
+                    </p>
+                </div>
+
+                <div class="feature-card bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="w-16 h-16 bg-nomed-secondary rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-nomed-text mb-4">Gamificación</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Sistema de recompensas, logros y niveles que hacen el aprendizaje 
+                        más atractivo y motivador para los estudiantes.
+                    </p>
+                </div>
+
+                <div class="feature-card bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="w-16 h-16 bg-nomed-secondary rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-nomed-text mb-4">Accesible 24/7</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Acceso en cualquier momento y lugar desde tu dispositivo móvil, 
+                        permitiendo estudiar cuando y donde quieras.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile Preview Section -->
+    <section id="demo" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center space-y-4 mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold font-poppins text-nomed-text">Vista Previa de la App</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Descubre cómo se ve y funciona App Nomed en tu dispositivo móvil
+                </p>
+            </div>
+            
+            <div class="max-w-6xl mx-auto">
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <!-- Mobile Screen 1 -->
+                    <div class="app-preview flex justify-center">
+                        <div class="mobile-screen w-64 h-96 p-4 relative overflow-hidden">
+                            <div class="bg-white rounded-2xl h-full p-4">
+                                <div class="text-center space-y-4">
+                                    <div class="w-16 h-16 bg-nomed-secondary rounded-full mx-auto flex items-center justify-center">
+                                        <span class="text-white font-bold text-2xl">N</span>
+                                    </div>
+                                    <h3 class="text-lg font-bold text-gray-800">¡Bienvenido!</h3>
+                                    <p class="text-sm text-gray-600">Selecciona tu materia favorita</p>
+                                    <div class="space-y-2">
+                                        <button class="w-full p-3 bg-nomed-secondary text-white rounded-lg text-sm font-semibold">
+                                            📐 Matemáticas
+                                        </button>
+                                        <button class="w-full p-3 bg-gray-200 text-gray-700 rounded-lg text-sm font-semibold">
+                                            📚 Historia
+                                        </button>
+                                        <button class="w-full p-3 bg-gray-200 text-gray-700 rounded-lg text-sm font-semibold">
+                                            🧪 Ciencias
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Mobile Screen 2 -->
+                    <div class="app-preview flex justify-center" style="animation-delay: 1s;">
+                        <div class="mobile-screen w-64 h-96 p-4 relative overflow-hidden">
+                            <div class="bg-white rounded-2xl h-full p-4">
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="text-lg font-bold text-gray-800">Matemáticas</h3>
+                                        <div class="text-sm text-nomed-secondary">Nivel 3</div>
+                                    </div>
+                                    <div class="bg-gray-200 rounded-full h-2">
+                                        <div class="bg-nomed-secondary h-2 rounded-full" style="width: 60%"></div>
+                                    </div>
+                                    <div class="space-y-3">
+                                        <div class="bg-nomed-secondary text-white p-3 rounded-lg">
+                                            <div class="text-sm font-semibold">15 + 27 = ?</div>
+                                            <div class="text-xs mt-1">Pregunta 5 de 10</div>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-2">
+                                            <button class="p-2 bg-gray-100 rounded-lg text-sm">A) 41</button>
+                                            <button class="p-2 bg-green-100 text-green-700 rounded-lg text-sm">B) 42 ✓</button>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <div class="text-xs text-gray-600">Puntos: 150</div>
+                                        <div class="text-xs text-gray-600">Racha: 3</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Mobile Screen 3 -->
+                    <div class="app-preview flex justify-center" style="animation-delay: 2s;">
+                        <div class="mobile-screen w-64 h-96 p-4 relative overflow-hidden">
+                            <div class="bg-white rounded-2xl h-full p-4">
+                                <div class="space-y-4">
+                                    <div class="text-center">
+                                        <div class="w-16 h-16 bg-yellow-400 rounded-full mx-auto flex items-center justify-center mb-2">
+                                            <span class="text-white font-bold text-2xl">🏆</span>
+                                        </div>
+                                        <h3 class="text-lg font-bold text-gray-800">¡Nivel Completado!</h3>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <div class="flex justify-between">
+                                            <span class="text-sm text-gray-600">Puntuación:</span>
+                                            <span class="text-sm font-semibold">850/1000</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-sm text-gray-600">Tiempo:</span>
+                                            <span class="text-sm font-semibold">4:32</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-sm text-gray-600">Logros:</span>
+                                            <span class="text-sm font-semibold">+3</span>
+                                        </div>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <button class="w-full p-3 bg-nomed-secondary text-white rounded-lg text-sm font-semibold">
+                                            Siguiente Nivel
+                                        </button>
+                                        <button class="w-full p-3 bg-gray-200 text-gray-700 rounded-lg text-sm font-semibold">
+                                            Repetir
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="py-20 bg-nomed-gray">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center space-y-8">
+                <h2 class="text-3xl lg:text-4xl font-bold font-poppins text-nomed-text">
+                    Descarga App Nomed
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Disponible para iOS y Android. ¡Comienza a aprender hoy mismo!
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                    <button class="app-icon bg-black text-white px-8 py-4 rounded-xl flex items-center space-x-4 hover:bg-gray-800 transition-colors">
+                        <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center">
+                            <span class="text-black font-bold">🍎</span>
+                        </div>
+                        <div class="text-left">
+                            <div class="text-sm">Descargar en</div>
+                            <div class="text-lg font-semibold">App Store</div>
+                        </div>
+                    </button>
+                    <button class="app-icon bg-black text-white px-8 py-4 rounded-xl flex items-center space-x-4 hover:bg-gray-800 transition-colors">
+                        <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center">
+                            <span class="text-black font-bold">🤖</span>
+                        </div>
+                        <div class="text-left">
+                            <div class="text-sm">Descargar en</div>
+                            <div class="text-lg font-semibold">Google Play</div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-nomed-secondary to-red-600 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <div class="max-w-3xl mx-auto space-y-8">
+                <h2 class="text-3xl lg:text-4xl font-bold font-poppins">
+                    ¿Listo para mejorar tu aprendizaje?
+                </h2>
+                <p class="text-xl opacity-90">
+                    Únete a miles de estudiantes que ya están aprendiendo de manera más eficiente y divertida
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="bg-white text-nomed-secondary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors">
+                        Descargar Gratis
+                    </button>
+                    <button class="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-nomed-secondary transition-colors">
+                        Ver Tutorial
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-nomed-secondary rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">A</span>
+                        </div>
+                        <span class="text-xl font-bold font-poppins">APP NOMED</span>
+                    </div>
+                    <p class="text-gray-300">
+                        Aplicación móvil integral con contenido interactivo, gamificación 
+                        y aprendizaje personalizado para estudiantes de todas las edades.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Productos</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="../botbee/index.html" class="hover:text-nomed-secondary transition-colors">Botbee</a></li>
+                        <li><a href="../monkit/index.html" class="hover:text-nomed-secondary transition-colors">Monkit</a></li>
+                        <li><a href="../quizzal/index.html" class="hover:text-nomed-secondary transition-colors">Quizzal</a></li>
+                        <li><a href="../app-nomed/index.html" class="hover:text-nomed-secondary transition-colors">App Nomed</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Recursos</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-nomed-secondary transition-colors">Guía de Usuario</a></li>
+                        <li><a href="#" class="hover:text-nomed-secondary transition-colors">Tutoriales</a></li>
+                        <li><a href="#" class="hover:text-nomed-secondary transition-colors">FAQ</a></li>
+                        <li><a href="#" class="hover:text-nomed-secondary transition-colors">Soporte</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Contacto</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>app@nomed.org</li>
+                        <li>+56 9 1234 5678</li>
+                        <li>Santiago, Chile</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 Nomed - App Nomed. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('[class*="animate-"]').forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+
+        // App download tracking
+        document.querySelectorAll('.app-icon').forEach(button => {
+            button.addEventListener('click', function() {
+                const platform = this.textContent.includes('App Store') ? 'iOS' : 'Android';
+                alert(`Redirigiendo a la descarga para ${platform}...`);
+            });
+        });
+    </script>
+</body>
+</html>
